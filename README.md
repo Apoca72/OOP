@@ -11,6 +11,8 @@ C.Тэмүүлэн, МТЭС, Программ хангамж, 22B1NUM6637
 ----------Лабораторийн тайлан бичих заавар----------
 Лабораторийн тайланг LabReportTemplate.doc загвар ашиглан Google Docs дээр боловсруулна.
 
+https://docs.google.com/document/d/1sbR_hO0n2HkFp8-fzHfxO9CIu2-W1icv2JyTWrAHXdo/edit?addon_store&tab=t.0
+
 Тайлан нь дараах бүтэцтэй байна:
 
 Гарчиг: Лабораторийн ажлын дугаар болон нэр.
