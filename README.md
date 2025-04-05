@@ -39,7 +39,7 @@ C.Тэмүүлэн, МТЭС, Программ хангамж, 22B1NUM6637
 
 ***Git ашиглах***
 Репозиторыг клонийлох:
-git clone https://github.com/*Username*/OOP
+git clone https://github.com/Apoca72/OOP
 
 Шинэ салбар үүсгэх:
 git checkout -b feature/branch-name
