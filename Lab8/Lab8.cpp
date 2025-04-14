@@ -3,9 +3,7 @@
 #include <vector>
 #include <algorithm>
 
-
 using namespace std;
-
 
 // Shape эх класс
 class Shape {
@@ -20,20 +18,16 @@ public:
         count--;
     }
 
-
     static int getCount() { // Статик гишүүн функц
         return count;
     }
 
-
     virtual double area() const = 0;       // Жинхэнэ хийсвэр функц
     virtual double perimeter() const = 0; // Жинхэнэ хийсвэр функц
-
 
     virtual void display() const = 0; // Дүрсийн мэдээллийг хэвлэх
 };
 int Shape::count = 0; // Статик хувьсагчийн эхлэлийн утга
-
 
 // _2DShape класс (Shape-ээс удамшсан)
 class _2DShape : public Shape {
@@ -43,22 +37,18 @@ public:
     _2DShape(double x, double y, double dim) : Shape(dim), x(x), y(y) {}
 };
 
-
 // Circle класс (_2DShape-ээс удамшсан)
 class Circle : public _2DShape {
 public:
     Circle(double x, double y, double r) : _2DShape(x, y, r) {}
 
-
     double area() const override {
         return M_PI * this->dimension * this->dimension; // this ашигласан
     }
 
-
     double perimeter() const override {
         return 2 * M_PI * this->dimension; // this ашигласан
     }
-
 
     void display() const override {
         cout << "Circle - Tuv: (" << x << ", " << y
@@ -66,7 +56,6 @@ public:
              << ", Perimeter: " << perimeter() << endl;
     }
 };
-
 
 // Square класс (_2DShape-ээс удамшсан)
 class Square : public _2DShape {
@@ -78,11 +67,9 @@ public:
         return this->dimension * this->dimension; // this ашигласан
     }
 
-
     double perimeter() const override {
         return 4 * this->dimension; // this ашигласан
     }
-
 
     void display() const override {
         cout << "Square - Top-Left Corner: (" << x << ", " << y
@@ -90,7 +77,6 @@ public:
              << ", Perimeter: " << perimeter() << endl;
     }
 };
-
 
 // Triangle класс (_2DShape-ээс удамшсан)
 class Triangle : public _2DShape {
@@ -102,11 +88,9 @@ public:
         return (sqrt(3) / 4) * this->dimension * this->dimension; // this ашигласан
     }
 
-
     double perimeter() const override {
         return 3 * this->dimension; // this ашигласан
     }
-
 
     void display() const override {
         cout << "Triangle - Deed oroi: (" << x << ", " << y
@@ -115,36 +99,29 @@ public:
     }
 };
 
-
 // Дүрсүүдийг талбайгаар нь эрэмбэлэхэд ашиглах функц
 bool compareArea(const Shape* a, const Shape* b) {
     return a->area() < b->area();
 }
-
 
 // Дүрсүүдийг периметрээр нь эрэмбэлэхэд ашиглах функц
 bool comparePerimeter(const Shape* a, const Shape* b) {
     return a->perimeter() < b->perimeter();
 }
 
-
 int main() {
     Circle circle(0, 0, 5);
     Square square(0, 0, 4);
     Triangle triangle(0, 0, 6);
 
-
     vector<Shape*> shapes = {&circle, &square, &triangle};
 
-
     cout << "Buh objectiin too: " << Shape::getCount() << endl;
-
 
     cout << "\nErembelegdeegui baidal:\n";
     for (const auto& shape : shapes) {
         shape->display();
     }
-
 
     sort(shapes.begin(), shapes.end(), compareArea);
    
@@ -153,15 +130,11 @@ int main() {
         shape->display();
     }
 
-
     sort(shapes.begin(), shapes.end(), comparePerimeter);
-
 
     cout << "\nPerimeter-eer eremblegdsen baidal:\n";
     for (const auto& shape : shapes) {
         shape->display();
     }
-
-
     return 0;
 }
