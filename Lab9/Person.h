@@ -4,6 +4,8 @@
 #include <string>
 using namespace std;
 
+// Хүн класс (үндсэн)
+// Нэр, РД, Нас агуулах
 class Person {
 protected:
     string name;
@@ -12,13 +14,15 @@ protected:
 
 public:
     Person();
-    Person(const string& name,const string& ssn, int age);
+    Person(const string& name, const string& ssn, int age);
+
     string getName() const;
     string getSSN() const;
     int getAge() const;
+
     void setName(const string& name);
     void setSSN(const string& ssn);
-    void setAge(const int age);
+    void setAge(int age);
 };
 
 #endif

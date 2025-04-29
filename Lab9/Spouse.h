@@ -1,40 +1,20 @@
-<<<<<<< HEAD
-#ifndef SPOUSE_H 
-#define SPOUSE_H 
-#include <string> 
-#include "Person.h" 
-using namespace std; 
- 
-class Spouse: public Person{ 
-    private: 
-    string annDate; 
- 
- 
-    public: 
-    Spouse(); 
-    Spouse(const string& name, const string& ssn, int age, const string& annDate); 
- 
-    string getAnnDate() const; 
-    void setAnnDate(const string& annDate); 
-}; 
-#endif 
-=======
 #ifndef SPOUSE_H
 #define SPOUSE_H
 
-#include <string>
 #include "Person.h"
-using namespace std;
+#include <string>
 
-class Spouse: public Person {
+// Нөхөр/Эхнэр класс (Person-оос өвлөсөн)
+class Spouse : public Person {
 private:
-    string annDate;
+    string anniversaryDate; // Ойн өдөр
 
 public:
     Spouse();
-    Spouse(const string& name, const string& ssn, int age, const string& annDate);
-    string getAnnDate() const;
-    void setAnnDate(string& annDate);
+    Spouse(const string& name, const string& ssn, int age, const string& anniversaryDate);
+
+    string getAnniversaryDate() const;
+    void setAnniversaryDate(const string& anniversaryDate);
 };
+
 #endif
->>>>>>> 36e62062b213de10188b35a9c28fd1a8c2b3f747

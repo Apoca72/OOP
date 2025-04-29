@@ -1,68 +1,49 @@
-#include "Employee.h" 
-#include "Division.h" 
- 
- 
-#include "JobDescription.h" 
-#include <iostream> 
-#include "Spouse.h" 
-#include "Child.h" 
-using namespace std; 
- 
-Employee::Employee() 
-    : company_id(0), title(""), startDate(""), division(Division()),  
-      jobDescriptions(), spouse(nullptr), children() {} 
- 
-Employee::Employee(const string& name, const string& ssn, int age,  
-                   int company_id, const string& title, const string& startDate, 
-                   const Division& division, const vector<JobDescription> jobDescriptions, 
-                   Spouse* spouse, const vector<Child> children)  
-    : Person(name, ssn, age), company_id(company_id), title(title), 
-      startDate(startDate), division(division), jobDescriptions(jobDescriptions), 
-      spouse(spouse), children(children) {} 
-int Employee::getCompanyID() const { 
-    return company_id; 
-} 
-string Employee::getStartDate() const { 
-    return startDate; 
-} 
-string Employee::getTitle() const { 
-    return title; 
-} 
-Division& Employee :: getDivision() { 
-    return division; 
-} 
-vector<JobDescription>& Employee:: getJobDescriptions() { 
-    return jobDescriptions; 
-} 
-vector<Child>& Employee::getChildren() { 
-    return children; 
-} 
-Spouse* Employee::getSpouse() const { 
-    return spouse; 
- 
- 
-} 
-void Employee::setCompanyID(int company_id) { 
-    this->company_id = company_id; 
-} 
-void Employee::setTitle(const string& title) { 
-    this->title = title; 
-} 
-void Employee::setStartDate(const string& startDate) { 
-    this->startDate = startDate; 
-} 
-void Employee::setDivision(Division& division) { 
-    this->division = division; 
-} 
-void Employee::setSpouse(Spouse* spouse) { 
-    this->spouse = spouse; 
-} 
-void Employee::setJobDescriptions(vector<JobDescription> jobDescriptions) { 
-    this->jobDescriptions = jobDescriptions; 
-} 
-void Employee::addJobDescription(const JobDescription& jobDescription) { 
-    jobDescriptions.push_back(jobDescription); 
-} 
-void Employee::addChild(const Child& child) { 
-    children.push_back(child); 
-} 
+#include "Employee.h"
+
+Employee::Employee()
+    : Person(), companyID(""), title(""), startDate(""), division(), spouse(nullptr) {}
+
+Employee::Employee(const string& name, const string& ssn, int age, const string& companyID,
+                   const string& title, const string& startDate, const Division& division)
+    : Person(name, ssn, age), companyID(companyID), title(title), startDate(startDate), division(division), spouse(nullptr) {}
+
+void Employee::addJobDescription(const JobDescription& job) {
+    jobDescriptions.push_back(job);
+}
+
+void Employee::addChild(const Child& child) {
+    children.push_back(child);
+}
+
+void Employee::setSpouse(Spouse* spouse) {
+    this->spouse = spouse;
+}
+
+void Employee::print() const {
+    cout << "Нэр: " << name << ", РД: " << ssn << ", Нас: " << age << endl;
+    cout << "Компанийн ID: " << companyID << ", Албан тушаал: " << title << ", Эхэлсэн огноо: " << startDate << endl;
+    cout << "Хэлтэс: " << division << endl;
+
+    cout << "Ажлын тодорхойлолт: ";
+    for (const auto& job : jobDescriptions) {
+        cout << job << " | ";
+    }
+    cout << endl;
+
+    if (spouse != nullptr) {
+        cout << "Гэрлэсэн хань: " << spouse->getName() << ", Ойн өдөр: " << spouse->getAnniversaryDate() << endl;
+    } else {
+        cout << "Гэрлээгүй." << endl;
+    }
+
+    if (!children.empty()) {
+        cout << "Хүүхдүүд: " << endl;
+        for (const auto& child : children) {
+            cout << " - " << child.getName() << " (Дуртай тоглоом: " << child.getFavoriteToy() << ")" << endl;
+        }
+    } else {
+        cout << "Хүүхэд байхгүй." << endl;
+    }
+
+    cout << "----------------------------------------" << endl;
+}

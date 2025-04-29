@@ -1,96 +1,59 @@
-#include <iostream> 
-#include "Employee.h" 
-#include "Division.h" 
-#include "JobDescription.h" 
-#include "Spouse.h" 
-#include "Child.h" 
-#include <string> 
-#include <vector> 
- 
-int main(){ 
-    Division d[3]; 
-    JobDescription jd[5]; 
-    Employee e[3]; 
- 
-    d[0].setDivisionName("Sales"); 
-    d[1].setDivisionName("Engineering"); 
-    d[2].setDivisionName("Human resource"); 
- 
-    jd[0].setDescription("Marketing"); 
-    jd[1].setDescription("Civil engineer"); 
-    jd[2].setDescription("Business Administration"); 
-    jd[3].setDescription("Software engineer"); 
-    jd[4].setDescription("Teacher"); 
- 
-    for(int i=0; i<3; i++){ 
-        e[i].setDivision(d[i]); 
-    } 
- 
- 
- 
-    for(int i=0; i<3; i++){ 
-        e[i].addJobDescription(jd[i]); 
-    } 
- 
-    e[0].addJobDescription(jd[3]); 
-    e[1].addJobDescription(jd[4]); 
- 
-    Spouse s[3]; 
-    Child c[3]; 
- 
-    for(int i=0; i<3; i++){ 
-        e[i].setSpouse(&s[i]); 
-    } 
- 
-    for(int i=0; i<3; i++){ 
-        e[i].addChild(c[i]); 
-    } 
- 
-    int id[3]; 
-     
-    for(int i=0; i<3; i++){ 
-        e[i].setCompanyID(id[i]); 
-    } 
- 
-    e[0].setName("Jargal"); 
-    e[1].setName("Tulga"); 
-    e[2].setName("Naran"); 
- 
-    e[0].setAge(21); 
-    e[1].setAge(25); 
-    e[2].setAge(23); 
- 
-    e[0].setTitle("Title1"); 
-    e[1].setTitle("Title2"); 
-    e[2].setTitle("Title3"); 
- 
- 
- 
-    e[0].setStartDate("2024-10-01"); 
-    e[1].setStartDate("2024-12-01"); 
-    e[2].setStartDate("2024-11-01");  
- 
-    e[0].setCompanyID(1); 
-    e[1].setCompanyID(2); 
-    e[2].setCompanyID(3); 
- 
-    cout<< "Employees information:\n"<<endl; 
-    for(int i=0; i<3; i++){ 
-        cout<<"Emplyee :"<< i+1<<endl; 
-        cout<<"Company id: "<< e[i].getCompanyID()<<endl; 
-        cout<<"Title: "<<e[i].getTitle()<<endl; 
-        cout<<"Start Date: "<< e[i].getStartDate()<<endl; 
-        cout<<"Name: "<< e[i].getName()<<endl; 
-        cout<<"Age: "<< e[i].getAge()<<endl; 
-        cout<<"Division: " << e[i].getDivision()<<endl; 
-        vector<JobDescription> jobs=e[i].getJobDescriptions(); 
-        for(const auto& job: jobs){ 
-            cout<<"Job: "<<job<<", "; 
-        } 
-        cout<<endl; 
- 
-        cout<< "Spouse:"<< (e[i].getSpouse() ? "Yes" : "No")<< endl; 
-        cout<<"Number of Children: "<<e[i].getChildren().size()<<endl; 
-    } 
-    return 0; 
-} 
+#include "Employee.h"
+#include "Division.h"
+#include "JobDescription.h"
+#include "Spouse.h"
+#include "Child.h"
+
+#include <vector>
+#include <iostream>
+
+int main() {
+    // Хэлтсүүд
+    Division d1("Sales");
+    Division d2("Engineering");
+    Division d3("HR");
+
+    // Ажлын тодорхойлолтууд
+    JobDescription jd1("Marketing");
+    JobDescription jd2("Civil Engineer");
+    JobDescription jd3("Business Admin");
+    JobDescription jd4("Software Engineer");
+    JobDescription jd5("Teacher");
+
+    // Ажилчид
+    Employee e1("Alice", "111-22-3333", 30, "C001", "Manager", "2020-01-01", d1);
+    Employee e2("Bob", "222-33-4444", 28, "C002", "Engineer", "2019-05-10", d2);
+    Employee e3("Charlie", "333-44-5555", 35, "C003", "HR Specialist", "2018-03-20", d3);
+
+    // Ажлын тодорхойлолтууд нэмэх
+    e1.addJobDescription(jd1);
+    e1.addJobDescription(jd3);
+
+    e2.addJobDescription(jd2);
+    e2.addJobDescription(jd4);
+
+    e3.addJobDescription(jd3);
+    e3.addJobDescription(jd5);
+
+    // Ханиуд
+    Spouse s1("Emma", "444-55-6666", 29, "2015-06-15");
+    Spouse s2("Lily", "555-66-7777", 27, "2017-08-20");
+    Spouse s3("Sophia", "666-77-8888", 32, "2012-11-11");
+
+    e1.setSpouse(&s1);
+    e2.setSpouse(&s2);
+    e3.setSpouse(&s3);
+
+    // Хүүхдүүд
+    e1.addChild(Child("Tom", "777-88-9999", 5, "Lego"));
+    e1.addChild(Child("Lucy", "888-99-0000", 3, "Doll"));
+
+    e2.addChild(Child("Jake", "999-00-1111", 4, "Car"));
+
+    // Бүх мэдээлэл хэвлэх
+    e1.print();
+    e2.print();
+    e3.print();
+
+    return 0;
+}
